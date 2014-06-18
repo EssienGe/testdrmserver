@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
+<head>
+	<title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<!--[if IE 6]>
+		<link rel="stylesheet" href="css/ie6.css" type="text/css" media="all" />
+	<![endif]-->
+	<script type="text/javascript" src="javascripts/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="javascripts/jquery-func.js"></script>
+	<script>
+		function buycontent(contentid){
+			if (confirm("Price: $5, Confirm?")){alert("Confirm");}else{alert("cancel");}
+		}
+		function rentalcontent(contentid){
+			if (confirm("Price: $1, Confirm?")){alert("Confirm");}else{alert("cancel");}
+		}
+
+	</script>
+</head>
+<body>
+<!-- Shell -->
+<div id="shell">
+	<!-- Header -->
+	<div id="header">
+		<h1><%= title%></h1>
+		<div class="social">
+			
+			<ul>
+			    <li><a class="twitter" href="#">twitter</a></li>
+			    <li><a class="facebook" href="#">facebook</a></li>
+			    <li><a class="vimeo" href="#">vimeo</a></li>
+			    <li><a class="rss" href="#">rss</a></li>
+			</ul>
+		</div>
+		
+		<!-- Navigation -->
+		<div id="navigation">
+			<ul>
+			<% if (userid=="") {%>
+			    <li><a class="active" href="/account/login">LOGIN</a></li>
+			    <li><a class="active"href="/account/register">REGISTER</a></li>
+			<%} else {%>
+				<li><a class="active" href="#" id="userid">USER <%= username%>, WELCOME BACK  </a></li>
+				<li><a class="active" href="/account/dologout">LOG OUT</a></li>
+			<% } %>
+			</ul>
+		</div>
+		<!-- end Navigation -->
+		
+		<!-- Sub-menu -->
+		<div id="sub-navigation">
+			<ul>
+			    <li><a href="index">MOVIES</a></li>
+			    <li><a href="ebook">E-BOOKS</a></li>
+			    <li><a href="etextbook">E-TEXTBOOKS</a></li>
+			</ul>
+			<div id="search">
+				<form action="home_submit" method="get" accept-charset="utf-8">
+					<label for="search-field">SEARCH</label>					
+					<input type="text" name="search field" value="Enter search here" id="search-field" title="Enter search here" class="blink search-field"  />
+					<input type="submit" value="GO!" class="search-button" />
+				</form>
+			</div>
+		</div>
+		<!-- end Sub-Menu -->
+		
+	</div>
+	<!-- end Header -->
+	<div class="inner_copyright">Collect from <a href="http://www.cssmoban.com/" target="_blank" title="网站模板">网站模板</a></div>
+	<!-- Main -->
+	<div id="main">
+		<!-- Content -->
+		<div id="content">	
+			<% for (var i=0;i<3;i++){ %>
+				<!-- Box -->
+				<div class="box">
+					<div class="head">
+						<h2>LATEST TRAILERS</h2>
+						<p class="text-right"><a href="#">See all</a></p>
+					</div>
+				<% for (var j=0;j<6;j++){ %>
+					<!-- Movie -->
+					<% if (j==5) {%>
+					<div class="movie-last">
+					<% }else {%>
+					<div class="movie">
+					<% } %>
+					<% var sn=i*6+j; %>
+						<div class="movie-image">
+							<a href="#"><span class="play"><span class="name"><%= content[sn].moviename%></span></span><img src=<%= content[sn].moviepic %> alt="movie" /></a>
+						</div>
+						<div class="rating">
+							<p>RATING</p>
+							<div class="stars">
+								<div class="stars-in">
+									
+								</div>
+							</div>
+							<span class="comments"><%= content[sn].moviecomments%></span>
+						</div>
+						<% if (userid!="") { %>
+						<input type="button" value="Buy" class="button" onclick="buycontent(<%=content[sn].movieid%>);" >
+						<input type="button" value="Rental" class="button" onclick="rentalcontent(<%=content[sn].movieid%>);">
+						<input type="button" value="View" class="button" onclick="location='/content/ElephantsDream.mp4'">
+						<% } %>
+					</div>
+					<!-- end Movie -->
+				<% } %>
+				<div class="cl">&nbsp;</div>
+			</div>
+			<!-- end Box -->
+			<% } %>			
+		</div>
+		<!-- end Content -->
+
+		
+
+		<div class="cl">&nbsp;</div>
+	</div>
+	<!-- end Main -->
+
+	<!-- Footer -->
+	<div id="footer">
+		<p>
+			<a href="#">HOME</a> <span>|</span>
+			<a href="#">NEWS</a> <span>|</span>
+			<a href="#">IN THEATERS</a> <span>|</span>
+			<a href="#">COMING SOON </a> <span>|</span>
+			<a href="#">LATERS TRAILERS</a> <span>|</span>
+			<a href="#">TOP RATED TRAILERS</a> <span>|</span>
+			<a href="#">MOST COMMENTED TRAILERS</a> <span>|</span>
+			<a href="#">ADVERTISE</a> <span>|</span>
+			<a href="#">CONTACT </a>
+		</p>
+		<p> &copy; 2009 Movie Hunter, LLC. All Rights Reserved.  Collect from <a href="http://www.cssmoban.com/" title="网站模板" target="_blank">网站模板</a></p>
+	</div>
+	<!-- end Footer -->
+</div>
+<!-- end Shell -->
+</body>
+</html>

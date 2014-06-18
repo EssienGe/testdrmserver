@@ -1,0 +1,108 @@
+
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
+<head>
+	<title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<!--[if IE 6]>
+		<link rel="stylesheet" href="css/ie6.css" type="text/css" media="all" />
+	<![endif]-->
+	<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="js/jquery-func.js"></script>
+</head>
+<body>
+<!-- Shell -->
+<div id="shell">
+	<!-- Header -->
+	<div id="header">
+		<h1><%= title%></h1>
+		<div class="social">
+			<span>FOLLOW US ON:</span>
+			<ul>
+			    <li><a class="twitter" href="#">twitter</a></li>
+			    <li><a class="facebook" href="#">facebook</a></li>
+			    <li><a class="vimeo" href="#">vimeo</a></li>
+			    <li><a class="rss" href="#">rss</a></li>
+			</ul>
+		</div>
+		
+		<!-- Navigation -->
+		<div id="navigation">
+			
+		</div>
+		<!-- end Navigation -->
+			<!-- Sub-menu -->
+		<div id="sub-navigation">
+			<ul>
+			    <li><a href="index">MOVIES</a></li>
+			    <li><a href="ebook">E-BOOKS</a></li>
+			    <li><a href="etextbook">E-TEXTBOOKS</a></li>
+			</ul>
+			<div id="search">
+				<form action="home_submit" method="get" accept-charset="utf-8">
+					<label for="search-field">SEARCH</label>					
+					<input type="text" name="search field" value="Enter search here" id="search-field" title="Enter search here" class="blink search-field"  />
+					<input type="submit" value="GO!" class="search-button" />
+				</form>
+			</div>
+		</div>
+		<!-- end Sub-Menu -->
+		
+		
+		
+	</div>
+	<!-- end Header -->
+	<div class="inner_copyright">Collect from <a href="http://www.cssmoban.com/" target="_blank" title="网站模板">网站模板</a></div>
+	<!-- Main -->
+	<div id="main">
+	<% if (type=='login') {%> 
+    <form id="login" action="dologin" method="post">
+    	<p>UserName:<input type="text" id="username" name="username"/></p>
+    	<p>Password:<input type="password" id="password" name="password"/></p>
+    	<input type="submit" value="Login" class="button">
+    	<!-- TODO JS Check username and password input type="button" value="Login" class="button" onclick="checkandsubmit"-->
+    	<input type="button" value="Register" class="button" onclick="location='/account/Register'">
+    </form>
+    <%} %>
+    <%if (type=='register'){%>  
+    <form id="register" action="doregister" method="post">
+    	<% if (error=='acountexist'){ %> 
+    	<p>Account already exist!</p>	
+    	<% } %>
+    	<p>UserName:<input type="text" id="username" name="username"/></p>
+    	<p>Password:<input type="password" id="password" name="password"/></p>
+    	<p>Confirmation:<input type="password" id="passwordconfirm" name="passwordconfirm"/></p>
+    	<input type="submit" value="Register" class="button">
+    	<input type="button" value="Has an Account" class="button" onclick="location='/account/login'">
+    </form>
+    <%}%>
+    <% if (type=='finished'){%>
+    <h2>Login Successfully
+    <a href="/">go to index</a>
+    </h2>
+
+    <%}%>
+    </div>
+	<!-- end Main -->
+
+	<!-- Footer -->
+	<div id="footer">
+		<p>
+			<a href="#">HOME</a> <span>|</span>
+			<a href="#">NEWS</a> <span>|</span>
+			<a href="#">IN THEATERS</a> <span>|</span>
+			<a href="#">COMING SOON </a> <span>|</span>
+			<a href="#">LATERS TRAILERS</a> <span>|</span>
+			<a href="#">TOP RATED TRAILERS</a> <span>|</span>
+			<a href="#">MOST COMMENTED TRAILERS</a> <span>|</span>
+			<a href="#">ADVERTISE</a> <span>|</span>
+			<a href="#">CONTACT </a>
+		</p>
+		<p> &copy; 2009 Movie Hunter, LLC. All Rights Reserved.  Collect from <a href="http://www.cssmoban.com/" title="网站模板" target="_blank">网站模板</a></p>
+	</div>
+	<!-- end Footer -->
+</div>
+<!-- end Shell -->
+</body>
+</html>
